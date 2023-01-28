@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Ziel ES Version -> Die kleinste verwendete Version auf die TS rücksicht nehmen muss
+    "lib": ["dom", "dom.iterable", "esnext"], // Definiert die internen Typen die TS verwendet
+    "allowJs": true, // Es können auch normale JS Files verwendet werden und nicht nur ts und tsx
+    "skipLibCheck": true, // Überspringt Type check von declaration Files
+    "esModuleInterop": true, // CommonJS und ES6 Imports können ohne Probleme und austauschbar verwendet werden
+    "allowSyntheticDefaultImports": true, // Wenn kein Default Export angegeben wird, dennoch auf eines zugegriffen werden
+    "strict": true, // Strict mode
+    "forceConsistentCasingInFileNames": true, // Case Sensitive File Names wird forciert
+    "noFallthroughCasesInSwitch": true, // Warnt vor Switch Case mit Case ohne return oder break
+    "module": "esnext", // Setzt das System Module für das Projekt
+    "moduleResolution": "node", // Module Resolution Strategy TODO:
+    "resolveJsonModule": true, // Strict Type Checking, ist so als würden alle Strict Type Checkings aktiviert werden
+    "isolatedModules": true, // Notwendig für Babel (nicht TS Transpile oder generell Single File Transpilation (SFT)). Erzeugt eine Warnung, wenn Code nicht dur SFT transpilierbar ist
+    "noEmit": true, // TS wird nur für TypeChecking verwendet nicht für Kompilierung -> übernimmt Parcel
+    "jsx": "react-jsx", // jsx für React
+    "baseUrl": ".", // Basis url angeben -> wichtig für imports
+    "paths": {
+      // Pfad Alias ./src/bla -> @/bla
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"], // Include Ordner für TypeScript
+  "exclude": ["node_modules"] // Exclude Ordner von TypeScript
+}
