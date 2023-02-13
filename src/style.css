@@ -9,9 +9,11 @@
   --clr-dark-blue: #252d37;
   --clr-very-dark-blue: #121417;
   --font-sans-serif: "Overpass", sans-serif;
+  --font-wght-400: 400;
+  --font-wght-700: 700;
   font-family: var(--font-sans-serif);
   line-height: 1;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 *,
@@ -37,13 +39,14 @@ body {
   display: grid;
   place-items: center;
   max-width: 400px;
+  padding: 1rem;
   height: 90vh;
   margin-inline: auto;
 }
 
 .card {
   width: 100%;
-  padding: 2rem;
+  padding: 1.5rem;
   min-height: 400px;
   border-radius: 1.5rem;
   background: radial-gradient(
@@ -113,7 +116,7 @@ body {
 }
 
 .star {
-  --var-circle-radius: 50px;
+  --var-circle-radius: 3.25rem;
   display: block;
   border-radius: 50%;
   text-align: center;

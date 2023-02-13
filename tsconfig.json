@@ -18,7 +18,8 @@
     "baseUrl": ".", // Basis url angeben -> wichtig für imports
     "paths": {
       // Pfad Alias ./src/bla -> @/bla
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@images/*": ["./images/*"]
     }
   },
   "include": ["src"], // Include Ordner für TypeScript

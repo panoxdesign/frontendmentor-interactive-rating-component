@@ -1,63 +1,45 @@
 import React, { useState } from "react";
-import { Content } from "@/layout/Content";
-import { Card } from "./components/Card";
-import Button from "./components/Button";
-import StarSelect from "./components/StarSelect";
-import { Headline } from "./components/Headline";
+import { AnimatePresence, motion } from "framer-motion";
 
-import IconStar from "../images/IconStar.svg";
-import ThankYou from "../images/ThankYou.svg";
+import { Content } from "@/layout/Content";
+
+import { isStringEmpty } from "@/utility/utility";
+
+import { SecondCard } from "@/components/SecondCard";
+import { FirstCard } from "@/components/FirstCard";
 
 export function App() {
-  const [selectedStar, setSelectedStar] = useState(0);
+  const [selectedStar, setSelectedStar] = useState("");
   const [submitted, setSubmitted] = useState(false);
   return (
     <Content>
-      {!submitted ? (
-        <Card>
-          <Card.Header>
-            <span className="star">
-              <IconStar />
-            </span>
-          </Card.Header>
-          <div className="top--2">
-            <Headline value={"How did we do?"} className="top" />
-            <p className="card__description top">
-              Please let us know how we did with your support request. All
-              feedback is appreciated to help us improve our offering!{" "}
-            </p>
-          </div>
-          <div className="top--2">
-            <StarSelect
-              starAnz={5}
-              onChange={(star) => setSelectedStar(star)}
-              value={selectedStar}
-            />
-          </div>
-          <Button
-            className="top--2"
-            onClick={() => selectedStar > 0 && setSubmitted(true)}
+      <AnimatePresence mode="popLayout">
+        {!submitted ? (
+          <motion.div
+            key="firstCard"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            Submit
-          </Button>
-        </Card>
-      ) : (
-        <Card center>
-          <Card.Header>
-            <ThankYou />
-          </Card.Header>
-          <p className="top text--center">
-            <span className="pill">You selected {selectedStar} out of 5</span>
-          </p>
-          <div className="text--center top--2">
-            <Headline value="Thank you!" />
-            <p className="card__description top">
-              We appreciate you taking the time to give a rating. If you ever
-              need more support, dont hesitate to get in touch!
-            </p>
-          </div>
-        </Card>
-      )}
+            <FirstCard
+              selectedStar={selectedStar}
+              onChangeStar={(star) => setSelectedStar(star)}
+              submitFn={() =>
+                !isStringEmpty(selectedStar) && setSubmitted(true)
+              }
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="secondCard"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <SecondCard star={selectedStar} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Content>
   );
 }

@@ -1,22 +1,18 @@
 import React from "react";
 
 type StarProps = {
-  children: string;
   active: boolean;
-  onClick: (value: number) => void;
+  value: string;
 };
 
-function Star({ children, active, onClick }: StarProps) {
+function Star({ value, active }: StarProps) {
   return (
     <button
       className={`star ${active && "active"}`}
       type="button"
-      onClick={() => {
-        console.log(children);
-        onClick(+children);
-      }}
+      data-value={value}
     >
-      {children}
+      {value}
     </button>
   );
 }
